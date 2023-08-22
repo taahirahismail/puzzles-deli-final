@@ -17,6 +17,35 @@ const routes = [
     component: () => import('../views/ProductsView.vue')
   },
   {
+    path: '/product/:id',
+    name: 'product',
+    component: () => import('../components/SingleProduct.vue')
+  },
+  // check
+  {
+    path: '/product', 
+    name: 'add product', 
+    component: () => import('../components/AddProduct.vue')
+  }, 
+  // check
+  {
+    path: '/product', 
+    name: 'update product',
+    component: () => import('../components/UpdateProduct.vue')
+  },
+  // check
+  {
+    path: '/users',
+    name: 'add user', 
+    component: () => import('../components/AddUser.vue')
+  },
+  // check 
+  {
+    path: '/users',
+    name: 'update user', 
+    component: ()=> import('../components/UpdateUser.vue')
+  },
+  {
     path: '/admin',
     name: 'admin',
     component: () => import('../views/AdminView.vue')
@@ -25,12 +54,8 @@ const routes = [
     path: '/contact',
     name: 'contact',
     component: () => import('../views/ContactView.vue')
-  },
-  {
-    path: '/product',
-    name: 'product',
-    component: () => import('../views/SingleProduct.vue')
   }
+  
   
 ]
 
