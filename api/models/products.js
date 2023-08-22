@@ -15,7 +15,7 @@ class Products {
   }
 
   fetchProduct(req, res) {
-    const query = `SELECT prodID, prodName, quantity, amount, category, prodUrl FROM Products WHERE prodID = ${req.params.id};`;
+    const query = `SELECT prodID, prodName, quantity, amount, category, prodUrl FROM Products WHERE prodID = '${req.params.id}';`;
 
     db.query(query, (err, result) => {
       if (err) throw err;
@@ -41,7 +41,7 @@ class Products {
   }
 
   updateProduct(req, res) {
-    const query = `UPDATE Products SET ? WHERE prodID = ?;`;
+    const query = `UPDATE Products SET ? WHERE prodID = '?';`;
 
     db.query(query, [req.body, req.params.id], (err) => {
       if (err) throw err;
@@ -54,7 +54,7 @@ class Products {
   }
 
   deleteProduct(req, res) {
-    const query = `DELETE FROM Products WHERE prodID = ${req.params.id};`;
+    const query = `DELETE FROM Products WHERE prodID = "${req.params.id}";`;
 
     db.query(query, (err) => {
       if (err) throw err;

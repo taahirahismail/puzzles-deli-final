@@ -67,7 +67,7 @@ class Users {
         const {emailAdd, userPass} = req.body;
 
         // query
-        const query = `SELECT firstName, lastName, userAge, gender, userRole, emailAdd, userPass WHERE emailAdd = '${emailAdd}';`
+        const query = `SELECT firstName, lastName, userAge, gender, userRole, emailAdd, userPass FROM Users WHERE emailAdd = '${emailAdd}';`
 
         db.query(query, async (err, result) => {
             if (err) throw err
