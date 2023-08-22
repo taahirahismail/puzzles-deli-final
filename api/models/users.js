@@ -116,8 +116,13 @@ class Users {
     updateUser(req, res) {
         const query = `UPDATE Users SET ? WHERE userID = ?`
 
+        const data = req.body;
+
+        // encrypt password
+        data.userPass = hashSync(data.userPass, 15);
+
         db.query(query,
-            [req.body, req.params.id],
+            [data, req.params.id],
             (err) => {
                 if (err) throw err
 
