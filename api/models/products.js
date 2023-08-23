@@ -41,7 +41,7 @@ class Products {
   }
 
   updateProduct(req, res) {
-    const query = `UPDATE Products SET ? WHERE prodID = '?';`;
+    const query = `UPDATE Products SET ? WHERE prodID = ?;`;
 
     db.query(query, [req.body, req.params.id], (err) => {
       if (err) throw err;
