@@ -2,7 +2,7 @@ const db = require("../config");
 
 class Products {
   fetchProducts(req, res) {
-    const query = `SELECT prodID, prodName, quantity, amount, category, prodUrl FROM Products;`;
+    const query = `SELECT prodID, prodName, prodDesc, quantity, amount, category, prodUrl FROM Products;`;
 
     db.query(query, (err, results) => {
       if (err) throw err;
@@ -15,7 +15,7 @@ class Products {
   }
 
   fetchProduct(req, res) {
-    const query = `SELECT prodID, prodName, quantity, amount, category, prodUrl FROM Products WHERE prodID = '${req.params.id}';`;
+    const query = `SELECT prodID, prodName, prodDesc, quantity, amount, category, prodUrl FROM Products WHERE prodID = '${req.params.id}';`;
 
     db.query(query, (err, result) => {
       if (err) throw err;
