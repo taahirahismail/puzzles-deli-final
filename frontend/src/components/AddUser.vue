@@ -1,6 +1,27 @@
 <template>
-    <div class="p-3 col-7">
-      <form action="https://puzzles-deli.onrender.com/register" method="POST" class="card p-3 yellow-bg">
+<div class="text-center">
+      <a
+        data-bs-toggle="modal"
+        data-bs-target="#addUser"
+        href="#addUser"
+        class="m-2 btn btn-outline-primary text-center"
+        id="addUser"
+        ><router-link to="/register">Add User</router-link></a>
+</div>
+<div class="modal" id="addUser">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Add User:</h4>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+
+          <div>
+            <form class="card p-3 yellow-bg">
         <h1 class="text-center heading-font">Register:</h1>
   
         <div class="mb-3 text-font">
@@ -94,15 +115,22 @@
   
         <p class="text-font">* indicates a required field.</p>
   
-        <div class="p-3 text-center">
-          <button type="submit" class="btn m-2 add-btn text-font">Register!</button>
+        
+      </form>
+          </div>
+          <div class="modal-footer">
+            <div class="p-3 text-center">
+          <button type="submit" class="btn m-2 add-btn text-font" @click="addUser">Register!</button>
           <button type="reset" class="btn m-2 clr-btn  text-font">Clear Fields</button>
         </div>
-      </form>
+          </div>
+        </div>
+      </div>
     </div>
 </template>
   
   <script>
+  import axios from 'axios'
   export default {
     data() {
       return {
@@ -114,6 +142,32 @@
         userPass: "",
         userProfile: ""
       };
+    }, 
+    methods:{
+      async addUser(){
+        try{
+          await axios.post('https://puzzles-deli.onrender.com/register', {
+            firstName: this.firstName,
+            lastName: this.lastName,
+            userAge: this.userAge,
+            gender: this.gender,
+            emailAdd: this.emailAdd,
+            userPass: this.userPass,
+            userProfile: this.userProfile
+          })
+          this.firstName = ""
+          this.lastName = ""
+          this.userAge = ""
+          this.gender = ""
+          this.emailAdd = ""
+          this.userPass = ""
+          this.userProfile = ""
+          this.$router.push('/admin')
+        }
+        catch(err){
+          alert(err)
+        }
+      }
     }
   };
   </script>
@@ -140,4 +194,4 @@
     border: 3px dashed #EE4823;
     background: #FAF9E8;
   }
-  </style>>
+  </style>

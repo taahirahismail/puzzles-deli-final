@@ -29,19 +29,19 @@ const routes = [
   }, 
   // check
   {
-    path: '/product', 
+    path: '/product/:id', 
     name: 'update product',
     component: () => import('../components/UpdateProduct.vue')
   },
   // check
   {
-    path: '/users',
+    path: '/register',
     name: 'add user', 
     component: () => import('../components/AddUser.vue')
   },
   // check 
   {
-    path: '/users',
+    path: '/user/:id',
     name: 'update user', 
     component: ()=> import('../components/UpdateUser.vue')
   },
@@ -55,8 +55,6 @@ const routes = [
     name: 'contact',
     component: () => import('../views/ContactView.vue')
   }
-  
-  
 ]
 
 const router = createRouter({

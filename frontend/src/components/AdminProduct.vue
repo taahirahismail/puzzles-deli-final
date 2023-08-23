@@ -29,6 +29,7 @@ export default{
             try{
                 await axios.delete(`https://puzzles-deli.onrender.com/product/${id}`)
                 this.$store.dispatch("fetchProducts")
+                window.location.reload();
             }
             catch(err){
                 alert(err)
@@ -37,3 +38,8 @@ export default{
     }
 }
 </script>
+<style scoped>
+table, tr, td{
+    border: 3px solid black;
+}
+</style>
