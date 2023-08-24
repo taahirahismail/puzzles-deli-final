@@ -25,8 +25,6 @@
 
           <div>
             <form
-              action="https://puzzles-deli.onrender.com/product"
-              method="POST"
               class="p-3 yellow-bg"
             >
               
@@ -114,7 +112,7 @@
             <button
               type="submit"
               class="btn m-2 add-btn text-font"
-              data-bs-dismiss="modal"
+              data-bs-dismiss="modal" @click="addProduct()"
             >
               Add Product!
             </button>
@@ -127,7 +125,7 @@
     </div>
   </div>
 
-  <div class="p-3 col-7">
+  <!-- <div class="p-3 col-7">
     <form
       action="https://puzzles-deli.onrender.com/product"
       method="POST"
@@ -222,7 +220,7 @@
         </button>
       </div>
     </form>
-  </div>
+  </div> -->
 </template>
 
 <script>

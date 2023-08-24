@@ -8,9 +8,7 @@
     <td>{{product.prodUrl}}</td>
     <td>
         <div>
-            <router-link :to="{name: 'update product', params: {id: product.prodID}}">
-                <button>Edit</button>
-            </router-link>
+            <update-product/>
             <button @click="deleteProduct(product.prodID)">Delete</button>
         </div>
     </td>
@@ -19,11 +17,13 @@
 
 <script>
 import axios from 'axios'
+import UpdateProduct from '@/components/UpdateProduct.vue'
 
 export default{
     props: [
         "product"
-    ], 
+    ],
+    components:{UpdateProduct},
     methods: {
         async deleteProduct(id){
             try{

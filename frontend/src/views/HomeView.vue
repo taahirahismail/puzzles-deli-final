@@ -6,13 +6,13 @@
   <div class="row">
     <div id="green1" class="col-5">"Welcome to a World Between the Slices: <br> Where Culinary Dreams Become Delicious Realities! <br> Step into the extraordinary realm of flavours and textures 
 at 'PUZZLES DELI'. “</div>
-    <div id="yellow" class="col-3">ddd</div>
-    <div id="green2" class="col-3">wqe</div>
+    <div id="yellow" class="col-3">Chicken</div>
+    <div id="green2" class="col-3">Vegan</div>
   </div>
   <div class="row">
-    <div id="red" class="col-3">ddddd</div>
-    <div id="yellow" class="col-3">ddd</div>
-    <div id="review" class="col-5">wqe</div>
+    <div id="red" class="col-3">Breakfast</div>
+    <div id="yellow" class="col-3">Pastrami</div>
+    <div id="review" class="col-5">Review Carousel</div>
   </div>
 </template>
 

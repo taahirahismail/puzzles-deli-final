@@ -4,7 +4,8 @@ export default createStore({
   state: {
     products: null, 
     product: null, 
-    users: null
+    users: null,
+    asc: true
   },
   mutations: {
     setProducts: (state, value) => {
@@ -17,6 +18,16 @@ export default createStore({
 
     setUsers: (state, value) => {
       state.users = value
+    }, 
+
+    sortProducts: (state) => {
+      state.products.sort((a, b) => {
+        return a.amount - b.amount;
+      }); 
+      if (!state.asc){
+        state.products.reverse(); 
+      }
+      state.asc= !state.asc
     }
   },
   actions: {
