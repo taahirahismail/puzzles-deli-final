@@ -6,7 +6,7 @@
       data-bs-target="#add-user-modal"
       href="#add-user-modal"
       class="m-2 btn btn-outline-primary text-center"
-      id="add-user-modal"
+      
       >Add User</a
     >
   </div>

@@ -1,11 +1,17 @@
 import { createStore } from 'vuex'
+import axios from 'axios';
+const url = "https://puzzles-deli.onrender.com/products/";
 
 export default createStore({
   state: {
     products: null, 
     product: null, 
+    selectedProduct: null, 
     users: null,
-    asc: true
+    spinner: null, 
+    token: null, 
+    message: null, 
+    
   },
   mutations: {
     setProducts: (state, value) => {
@@ -19,55 +25,61 @@ export default createStore({
     setUsers: (state, value) => {
       state.users = value
     }, 
+    setSelectedProduct(state, product){
+      state.selectedProduct = product
+    },
 
-    sortProducts: (state) => {
-      state.products.sort((a, b) => {
-        return a.amount - b.amount;
-      }); 
-      if (!state.asc){
-        state.products.reverse(); 
-      }
-      state.asc= !state.asc
+    setSpinner(state, value){
+      state.spinner = value;
+    }, 
+
+    setToken(state, token){
+      state.token = token
+    }, 
+    setMessage(state, message){
+      state.message = message
     }
+
   },
   actions: {
     async fetchProducts (context){
       try{
-        let {results} = await(await fetch("https://puzzles-deli.onrender.com/products/")).json()
-        if(results){
-          context.commit("setProducts", results)
-        }
-        else{alert("error")}
+        const res = await axios.get(`${url}products`); 
+        context.commit("setProducts", res.results); 
       }
       catch(e){
-        console.error(e)
+        context.commit("setMessage", "unable to fetch products");
       }
     }, 
 
     async fetchProduct (context, id){
       try{
-        let {result} = await(await fetch("https://puzzles-deli.onrender.com/product/" + id)).json()
-        if(result){
-          context.commit("setProduct", result)
-        }
-        else{alert("error")}
+        const res = await axios.get(`${url}products/${id}`)
+        context.commit("setProduct", res.result)
       }
       catch(e){
-        console.error(e)
+        context.commit("setMessage", "Error fetching a sinlge product")
       }
     }, 
 
-    async fetchUsers (context){
+    async fetchUsers(context){
       try{
-        let {results} = await(await fetch("https://puzzles-deli.onrender.com/users")).json()
-        if(results){
-          context.commit("setUsers", results)
-        }
-        else{alert("error")}
+        const res = await axios.get(`${url}users`)
+        context.commit("setUsers", res.results)
       }
       catch(e){
-        console.error(e)
+        context.commit("setMessage", "Error in fetching users")
       }
+    }
+
+    async registerUser(context, payload){
+      try{
+        const res = await axios.post
+      }
+    }
+
+    async updateProducts (context){
+
     }
   },
   

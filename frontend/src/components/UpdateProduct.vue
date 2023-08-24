@@ -221,6 +221,7 @@
 
   import axios from 'axios'
   export default {
+    props: ['prodData'],
     data() {
       return {
         prodID: '',
@@ -234,7 +235,7 @@
     methods: {
         async updateProduct(){
             try{
-                await axios.put(`https://puzzles-deli.onrender.com/product/${this.$route.params.id}`, {
+                await axios.put(`https://puzzles-deli.onrender.com/product/${this.prodID}`, {
                     prodID: this.product.prodID,
                     prodName: this.product.prodName,
                     quantity: this.product.quantity,
@@ -242,6 +243,7 @@
                     category: this.product.category,
                     prodUrl: this.product.prodUrl,
                 }
+                
                 )
                 this.prodID = ''
                 this.prodName = ''
