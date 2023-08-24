@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const routes = express.Router();
 
 const {users, products} = require('../models');
+const {verifyAToken} = require('../middleware/authenticateUser')
 
 // users routes
 routes.get('/users', (req, res) => {
@@ -13,12 +14,12 @@ routes.get('/user/:id', (req, res) => {
     users.fetchUser(req, res)
 });
 
-routes.post('/register',
+routes.post('/register', verifyAToken,
 bodyParser.json(), (req, res) => {
     users.register(req, res)
 });
 
-routes.post('/login',
+routes.post('/login', verifyAToken,
 bodyParser.json(), (req, res) => {
     users.login(req, res)
 });

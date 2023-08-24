@@ -7,19 +7,6 @@ const cors = require('cors');
 const errorHandling = require('./middleware/errorHandling')
 const port = +process.env.PORT || 3000;
 
-// static files
-app.use(express.static('./static'));
-
-app.use(
-    express.urlencoded({
-        extended: false
-    }),
-    cookieParser(),
-    cors(),
-    routes,
-    errorHandling
-);
-
 // set up cors access
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -31,17 +18,22 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(
+    express.static('./static'),
+    express.urlencoded({
+        extended: false
+    }),
+    cookieParser(),
+    cors(),
+    routes
+);
 // direct to routes description page
 routes.get('/',
 (req, res) => {
     res.sendFile(path.resolve(__dirname, './static/html/index.html'));
 });
-
+app.use(errorHandling)
 // set server
 app.listen(port, () => {
     console.log(`Puzzles Deli server is running on port ${port}`);
 });
-
-const verifyAToken = require('./middleware/authenticateUser');
-
-app.get('')

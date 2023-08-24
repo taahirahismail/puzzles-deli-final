@@ -95,7 +95,7 @@ class Users {
                             maxAge: 3600000,
                             httpOnly: true
                         });
-
+                          
                         if (cResult) {
                             res.json({
                                 message: "Welcome back to Puzzles Deli!",

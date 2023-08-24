@@ -1,45 +1,55 @@
-const {sign, verify} = require('jsonwebtoken');
-require('dotenv').config();
+const { sign, verify } = require("jsonwebtoken");
+require("dotenv").config();
 
 function createToken(user) {
-    return sign({
-        emailAdd: user.emailAdd,
-        userPass: user.userPass
-    },
-    
-    process.env.secret_key,
-    
+  return sign(
     {
-        expiresIn: '1h'
-    });
+      emailAdd: user.emailAdd,
+      userPass: user.userPass,
+    },
+
+    process.env.secret_key,
+
+    {
+      expiresIn: "1h",
+    }
+  );
 }
 
-// function verifyAToken(req, res, next){
-//    try {
-//         // Retrieve token from req.headers
-//         console.log("Get token from req.headers['authorization']");
-//         const token = req.headers["authorization"];
+function verifyAToken(req, res, next) {
+  try {
+    const token =
+      req.cookies["LegitUser"] !== null
+        ? req.cookies["LegitUser"]
+        : "Please register!";
 
-//         if (!token) {
-//             throw new Error('Token not provided!');
-//         }
+    const isValid = null;
 
-//         // verify token using secret key
-//         const decoded = verify(token, process.env.secret_key);
-//         console.log('Token verified:', decoded);
+    if (!token) {
+      isValid = verify(token, process.env.secret_key);
 
-//         req.decoded = decoded;
+      if (isValid) {
+        req.authenticated = true;
+        next();
+      } else {
+        res.json({
+          status: res.statusCode,
+          message: "Please register!",
+        });
+      }
+    } else {
+      res.json({
+        status: res.statusCode,
+        message: "Please register!",
+      });
+    }
+  } catch (err) {
+    res.json({
+      status: res.statusCode,
+      message: err.message,
+    });
+  }
+}
 
-//         console.log(token);
-//         next();
-//    } catch(error) {
-//         console.error('Token verification failed:', error.message);
-//         res.status(401).json({
-//             status: res.statusCode,
-//             msg: error.message
-//         });
-//    }
-// }
-
-module.exports = {createToken};
+module.exports = { createToken, verifyAToken };
 // add verifyAToken to module.exports
