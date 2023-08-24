@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const routes = express.Router();
 
 const {users, products} = require('../models');
-const {verifyAToken} = require('../middleware/authenticateUser')
 
 // users routes
 routes.get('/users', (req, res) => {
