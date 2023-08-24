@@ -27,12 +27,15 @@ app.use(
     cors(),
     routes
 );
+
 // direct to routes description page
 routes.get('/',
 (req, res) => {
     res.sendFile(path.resolve(__dirname, './static/html/index.html'));
 });
-app.use(errorHandling)
+
+app.use(errorHandling);
+
 // set server
 app.listen(port, () => {
     console.log(`Puzzles Deli server is running on port ${port}`);

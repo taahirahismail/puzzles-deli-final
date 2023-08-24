@@ -14,12 +14,12 @@ routes.get('/user/:id', (req, res) => {
     users.fetchUser(req, res)
 });
 
-routes.post('/register', verifyAToken,
+routes.post('/register',
 bodyParser.json(), (req, res) => {
     users.register(req, res)
 });
 
-routes.post('/login', verifyAToken,
+routes.post('/login',
 bodyParser.json(), (req, res) => {
     users.login(req, res)
 });
