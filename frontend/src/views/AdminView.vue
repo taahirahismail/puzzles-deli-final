@@ -158,9 +158,12 @@ export default {
 
 <style scoped>
 *{
-  background-color: #faf9e8;
   font-family: "Londrina Solid", cursive;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
 
 .img-fluid{
   width: 50px;

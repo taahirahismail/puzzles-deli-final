@@ -34,9 +34,7 @@ export default {
 </script>
 
 <style scoped>
-  *{
-  background-color: #faf9e8;
-}
+
 
 .single-view{
   display: flex;

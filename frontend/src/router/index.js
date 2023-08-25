@@ -32,7 +32,7 @@ const routes = [
   {
     path: '/product/:prodID',
     name: 'ProductView',
-    component: () => import('../views/SingleProductView.vue')
+    component: () => import('../views/SingleProductView.vue.vue')
   }
   
 ]

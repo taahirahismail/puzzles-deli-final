@@ -89,9 +89,6 @@ export default {
 </script>
 
 <style scoped>
-*{
-  background-color: #faf9e8;
-}
 
 .heading{
   font-family: 'Luckiest Guy', cursive;

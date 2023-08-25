@@ -25,11 +25,11 @@ export default createStore({
     },
     setProducts(state, products) {
       state.products = products;
-      console.log(products);
+
     },
     setProduct(state, product) {
       state.product = product;
-      console.log(product);
+  
     },
     setSelectedProduct(state, product){
       state.selectedProduct = product
