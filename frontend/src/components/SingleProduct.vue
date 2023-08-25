@@ -1,4 +1,5 @@
 <template>
+
   <div class="single-view">
     <div v-if="product" class="card">
       <div>
@@ -29,6 +30,7 @@ export default {
     },
   },
 };
+
 </script>
 
 <style scoped>

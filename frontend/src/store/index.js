@@ -1,5 +1,6 @@
-import { createStore } from "vuex";
-import axios from "axios";
+
+import { createStore } from 'vuex'
+import axios from 'axios';
 const miniURL = "https://puzzles-deli.onrender.com/";
 
 export default createStore({
@@ -12,6 +13,7 @@ export default createStore({
     spinner: null,
     msg: null,
     asc: true, 
+
   },
   getters: {},
   mutations: {
@@ -61,6 +63,7 @@ export default createStore({
 
   },
   actions: {
+
     async fetchUsers(context) {
       try {
         const { data } = await axios.get(`${miniURL}users`);
@@ -76,6 +79,7 @@ export default createStore({
       } catch (e) {
         context.commit("setMsg", "an error occured");
       }
+
     },
     async fetchProducts(context) {
       try {
@@ -83,6 +87,9 @@ export default createStore({
         context.commit("setProducts", data.results);
       } catch (e) {
         context.commit("setMsg", "an error occured");
+
+
+
       }
     },
     async fetchProduct(context) {
@@ -105,6 +112,7 @@ export default createStore({
         }
       } catch (e) {
         context.commit("setMsg", "an error occured");
+
       }
     },
     async updateUser(context, payload) {
@@ -121,6 +129,7 @@ export default createStore({
         context.commit("setMsg", "an error occured");
       }
     },
+
     async deleteUser(context, id) {
       try {
         const { res } = await axios.delete(`${miniURL}user/${id}`);
