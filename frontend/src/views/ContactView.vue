@@ -19,7 +19,8 @@
             name="Full Name"
             class="form-control p-2 light-bg"
             placeholder="eg: Clayton Margaret Sherman"
-            required
+            required oninvalid="this.setCustomValidity('Please insert full name')"
+            oninput="this.setCustomValidity('')"
           />
         </div>
 
@@ -32,7 +33,8 @@
             name="Email"
             class="form-control p-2 light-bg"
             placeholder="eg: claytonmsherman@hotmail.com"
-            required
+            required oninvalid="this.setCustomValidity('Please insert Email')"
+            oninput="this.setCustomValidity('')"
           />
         </div>
 

@@ -38,7 +38,8 @@
                   name="prodID"
                   class="form-control input-bg"
                   placeholder="eg: CHM001"
-                  required
+                  required oninvalid="this.setCustomValidity('Please insert productID')"
+            oninput="this.setCustomValidity('')"
                 />
               </div>
 
@@ -51,7 +52,8 @@
                   name="prodName"
                   class="form-control input-bg"
                   placeholder="eg: Chicken Mayo"
-                  required
+                  required oninvalid="this.setCustomValidity('Please insert product name')"
+            oninput="this.setCustomValidity('')"
                 />
               </div>
 
@@ -63,7 +65,8 @@
                   id="quantity"
                   name="quantity"
                   class="form-control input-bg"
-                  required
+                  required oninvalid="this.setCustomValidity('Please insert quantity')"
+            oninput="this.setCustomValidity('')"
                 />
               </div>
 
@@ -75,7 +78,8 @@
                   id="amount"
                   name="amount"
                   class="form-control input-bg"
-                  required
+                  required oninvalid="this.setCustomValidity('Please insert price')"
+            oninput="this.setCustomValidity('')"
                 />
               </div>
 
@@ -88,7 +92,8 @@
                   name="category"
                   class="form-control input-bg"
                   placeholder="eg: Chicken"
-                  required
+                  required oninvalid="this.setCustomValidity('Please insert category')"
+            oninput="this.setCustomValidity('')"
                 />
               </div>
               <div class="mb-3 text-font">
@@ -100,7 +105,8 @@
                   name="description"
                   class="form-control input-bg"
                   placeholder="eg: This sandwich is made with love :)"
-                  required
+                  required oninvalid="this.setCustomValidity('Please insert product description')"
+            oninput="this.setCustomValidity('')"
                 />
               </div>
 
@@ -113,7 +119,8 @@
                   name="prodUrl"
                   class="form-control input-bg"
                   placeholder="Insert PostImages Link Here!"
-                  required
+                  required oninvalid="this.setCustomValidity('Please insert product image')"
+            oninput="this.setCustomValidity('')"
                 />
               </div>
 

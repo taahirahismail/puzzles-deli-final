@@ -1,7 +1,7 @@
 <template>
 <footer>
     <div class="footer">
-        <span>&copy;2023, BY B-ROWN AND IS-MAIL 🤠</span>
+        <span>&copy;2023, BY BROWN AND ISMAIL 🤠</span>
     </div>
 </footer>
 </template>
@@ -18,7 +18,7 @@ export default {
 }
 .footer{
     margin: auto;
-    height: 70px;
+    padding: 30px;
     display: flex;
     justify-content: center;
 }

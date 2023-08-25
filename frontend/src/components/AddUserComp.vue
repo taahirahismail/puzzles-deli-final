@@ -35,7 +35,8 @@
                 name="firstName"
                 class="form-control input-bg"
                 placeholder="eg: Clayton"
-                required
+                required oninvalid="this.setCustomValidity('Please insert first name')"
+            oninput="this.setCustomValidity('')"
               />
             </div>
 
@@ -48,7 +49,8 @@
                 name="lastName"
                 class="form-control input-bg"
                 placeholder="eg: Sherman"
-                required
+                required oninvalid="this.setCustomValidity('Please insert last name')"
+            oninput="this.setCustomValidity('')"
               />
             </div>
 
@@ -60,7 +62,8 @@
                 id="userAge"
                 name="userAge"
                 class="form-control input-bg"
-                required
+                required oninvalid="this.setCustomValidity('Please insert age')"
+            oninput="this.setCustomValidity('')"
               />
             </div>
 
@@ -73,7 +76,8 @@
                 name="gender"
                 class="form-control input-bg"
                 placeholder="eg: Female"
-                required
+                required oninvalid="this.setCustomValidity('Please insert gender')"
+            oninput="this.setCustomValidity('')"
               />
             </div>
 
@@ -86,7 +90,8 @@
                 name="emailAdd"
                 class="form-control input-bg"
                 placeholder="eg: claytonsherman@hotmail.com"
-                required
+                required oninvalid="this.setCustomValidity('Please insert email')"
+            oninput="this.setCustomValidity('')"
               />
             </div>
 
@@ -99,7 +104,8 @@
                 name="userPass"
                 class="form-control input-bg"
                 placeholder="eg: P4$$w0rd"
-                required
+                required oninvalid="this.setCustomValidity('Please insert password')"
+            oninput="this.setCustomValidity('')"
               />
             </div>
 

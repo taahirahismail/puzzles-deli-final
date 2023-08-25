@@ -1,7 +1,7 @@
 
 import { createStore } from 'vuex'
 import axios from 'axios';
-const miniURL = "https://puzzles-deli.onrender.com/";
+const url = "https://puzzles-deli.onrender.com/";
 
 export default createStore({
   state: {
@@ -11,7 +11,7 @@ export default createStore({
     products: null,
     product: null,
     spinner: null,
-    msg: null,
+    message: null,
     asc: true, 
 
   },
@@ -37,8 +37,8 @@ export default createStore({
     setSpinner(state, spinner) {
       state.spinner = spinner;
     },
-    setMsg(state, msg) {
-      state.msg = msg;
+    setMessage(state, message) {
+      state.message = message;
     },
 
     sortProductsByPrice: (state) => {
@@ -66,27 +66,27 @@ export default createStore({
 
     async fetchUsers(context) {
       try {
-        const { data } = await axios.get(`${miniURL}users`);
+        const { data } = await axios.get(`${url}users`);
         context.commit("setUsers", data.results);
       } catch (e) {
-        context.commit("setMsg", "an error occured");
+        context.commit("setMessage", "an error occured in fetching users");
       }
     },
     async fetchUser(context) {
       try {
-        const { data } = await axios.get(`${miniURL}user`);
+        const { data } = await axios.get(`${url}user`);
         context.commit("setUser", data.results);
       } catch (e) {
-        context.commit("setMsg", "an error occured");
+        context.commit("setMessage", "an error occured in fetching a single user");
       }
 
     },
     async fetchProducts(context) {
       try {
-        const { data } = await axios.get(`${miniURL}products`);
+        const { data } = await axios.get(`${url}products`);
         context.commit("setProducts", data.results);
       } catch (e) {
-        context.commit("setMsg", "an error occured");
+        context.commit("setMessage", "an error occured in fetching products");
 
 
 
@@ -94,110 +94,110 @@ export default createStore({
     },
     async fetchProduct(context) {
       try {
-        const { data } = await axios.get(`${miniURL}product`);
+        const { data } = await axios.get(`${url}product`);
         context.commit("setProduct", data.results);
       } catch (e) {
-        context.commit("setMsg", "an error occured");
+        context.commit("setMessage", "an error occured in fetching a single product");
       }
     },
     async register(context, payload) {
       try {
-        const res = await axios.post(`${miniURL}register`, payload);
+        const res = await axios.post(`${url}register`, payload);
         const { msg, err } = await res.data;
         if (err) {
-          context.commit("setMsg", "Something went wrong");
+          context.commit("setMessage", "Something went wrong in the registration process");
         }
-        if (msg) {
-          context.commit("setUser", msg);
+        if (message) {
+          context.commit("setUser", message);
         }
       } catch (e) {
-        context.commit("setMsg", "an error occured");
+        context.commit("setMessage", "an error occured");
 
       }
     },
     async updateUser(context, payload) {
       console.log(payload)
       try {
-        const res = await axios.patch(`${miniURL}user/${payload.userID}`, payload.data);
-        const { msg, err } = res.data
-        if(msg){
-          context.commit("setUser", msg)
+        const res = await axios.patch(`${url}user/${payload.userID}`, payload.data);
+        const { message, err } = res.data
+        if(message){
+          context.commit("setUser", message)
         } else{
-          context.commit("setMsg", e)
+          context.commit("setMessage", e)
         }
       } catch (e) {
-        context.commit("setMsg", "an error occured");
+        context.commit("setMessage", "an error occured in updating a user");
       }
     },
 
     async deleteUser(context, id) {
       try {
-        const { res } = await axios.delete(`${miniURL}user/${id}`);
-        const {msg, err} = res.data
+        const { res } = await axios.delete(`${url}user/${id}`);
+        const {message, err} = res.data
         if(err){
           console.error("An error has occured: ", err)
-          context.commit("setMsg", "An error has occured")
+          context.commit("setMessage", "An error has occured in deleting a user")
         }
-        if(msg){
+        if(message){
           context.dispatch("fetchProducts")
-          context.commit('setUser', msg)
+          context.commit('setUser', message)
           console.log("User deleted successfully")
         }
       } catch (e) {
-        context.commit("setMsg", "an error occured");
+        context.commit("setMessage", "an error occured in deleting a user");
       }
     },
     async addProduct(context, payload) {
       console.log("REACHED");
       try {
-        const { res } = await axios.post(`${miniURL}product`, payload);
-        const { msg, err } = await res.data;
-        console.log(msg, err);
-        if (msg) {
-          context.commit("setProduct", msg);
+        const { res } = await axios.post(`${url}product`, payload);
+        const { message, err } = await res.data;
+        console.log(message, err);
+        if (message) {
+          context.commit("setProduct", message);
           context.commit("setSpinner", false);
         } else {
-          context.commit("setMsg", err);
+          context.commit("setMessage", err);
         }
       } catch (e) {
-        context.commit("setMsg", "an error occured");
+        context.commit("setMessage", "an error occured while adding a product");
       }
     },
     async updateProduct(context, payload) {
       console.log(payload)
       try {
-        const res = await axios.patch(`${miniURL}product/${payload.prodID}`, payload);
-        const { msg, err } = await res.data;
-        console.log(msg, err);
+        const res = await axios.patch(`${url}product/${payload.prodID}`, payload);
+        const { message, err } = await res.data;
+        console.log(message, err);
         if (err) {
           console.log("An error has occured: ", err);
-          context.commit("setMsg", err);
+          context.commit("setMessage", err);
         }
-        if (msg) {
+        if (message) {
           context.dispatch("fetchProducts")
-          context.commit("setProduct", msg);
-          context.commit("setMsg", "Successfully updated product.");
+          context.commit("setProduct", message);
+          context.commit("setMessage", "Successfully updated product.");
         }
       } catch (e) {
-        context.commit("setMsg", e);
+        context.commit("setMessage", e);
       }
     },
     async deleteProduct(context, prodID) {
       console.log("reached");
       try {
-        const { res } = await axios.delete(`${miniURL}product/${prodID}`);
-        const { msg, err } = await res.data;
+        const { res } = await axios.delete(`${url}product/${prodID}`);
+        const { message, err } = await res.data;
         if (err) {
           alert("an error has occured, please try again");
         }
-        if (msg) {
-          context.commit("setProduct", msg);
+        if (message) {
+          context.commit("setProduct", message);
           context.commit("setSpinner", false);
         } else {
-          context.commit("setMsg", "An error occured");
+          context.commit("setMessage", "An error occured");
         }
       } catch (e) {
-        context.commit("setMsg", "an error occured");
+        context.commit("setMessage", "an error occured while deleting a product");
       }
     },
   },

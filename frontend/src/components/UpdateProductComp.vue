@@ -39,6 +39,8 @@
               placeholder="id"
               type="text"
               v-model="editingProduct.prodID"
+              required oninvalid="this.setCustomValidity('Please insert the productID')"
+            oninput="this.setCustomValidity('')"
             />
 
             </div>

@@ -39,6 +39,8 @@
                 type="text"
                 placeholder="ID"
                 v-model="editingUser.userID"
+                required oninvalid="this.setCustomValidity('Please insert the userID')"
+            oninput="this.setCustomValidity('')"
               />
             </div>
             <div class="mb-3 text-font">
