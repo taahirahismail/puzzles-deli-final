@@ -29,7 +29,7 @@
             <div class="mb-3 text-font">
               <label for="firstName" class="form-label">First Name(s): *</label>
               <input
-                v-model="firstName"
+                v-model="model.user.firstName"
                 type="text"
                 id="firstName"
                 name="firstName"
@@ -42,7 +42,7 @@
             <div class="mb-3 text-font">
               <label for="lastName" class="form-label">Last Name: *</label>
               <input
-                v-model="lastName"
+                v-model="model.user.lastName"
                 type="text"
                 id="lastName"
                 name="lastName"
@@ -55,7 +55,7 @@
             <div class="mb-3 text-font">
               <label for="userAge" class="form-label">Age: *</label>
               <input
-                v-model="userAge"
+                v-model="model.user.userAge"
                 type="number"
                 id="userAge"
                 name="userAge"
@@ -67,7 +67,7 @@
             <div class="mb-3 text-font">
               <label for="gender" class="form-label">Gender: *</label>
               <input
-                v-model="gender"
+                v-model="model.user.gender"
                 type="text"
                 id="gender"
                 name="gender"
@@ -80,7 +80,7 @@
             <div class="mb-3 text-font">
               <label for="emailAdd" class="form-label">Email: *</label>
               <input
-                v-model="emailAdd"
+                v-model="model.user.emailAdd"
                 type="text"
                 id="emailAdd"
                 name="emailAdd"
@@ -93,7 +93,7 @@
             <div class="mb-3 text-font">
               <label for="userPass" class="form-label">Password: *</label>
               <input
-                v-model="userPass"
+                v-model="model.user.userPass"
                 type="text"
                 id="userPass"
                 name="userPass"
@@ -108,7 +108,7 @@
                 >Profile Picture:</label
               >
               <input
-                v-model="userProfile"
+                v-model="model.user.userProfile"
                 type="text"
                 id="userProfile"
                 name="userProfile"
