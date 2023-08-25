@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="text-center">
+    <div class="button">
     <a
       data-bs-toggle="modal"
       data-bs-target="#add-user-modal"
       href="#add-user-modal"
-      class="m-2 btn btn-outline-primary text-center"
+      class="m-2 btn btn-outline-danger text-center"
       
       >Add User</a
     >
@@ -29,7 +29,7 @@
             <div class="mb-3 text-font">
               <label for="firstName" class="form-label">First Name(s): *</label>
               <input
-                v-model="firstName"
+                v-model="model.user.firstName"
                 type="text"
                 id="firstName"
                 name="firstName"
@@ -42,7 +42,7 @@
             <div class="mb-3 text-font">
               <label for="lastName" class="form-label">Last Name: *</label>
               <input
-                v-model="lastName"
+                v-model="model.user.lastName"
                 type="text"
                 id="lastName"
                 name="lastName"
@@ -55,7 +55,7 @@
             <div class="mb-3 text-font">
               <label for="userAge" class="form-label">Age: *</label>
               <input
-                v-model="userAge"
+                v-model="model.user.userAge"
                 type="number"
                 id="userAge"
                 name="userAge"
@@ -67,7 +67,7 @@
             <div class="mb-3 text-font">
               <label for="gender" class="form-label">Gender: *</label>
               <input
-                v-model="gender"
+                v-model="model.user.gender"
                 type="text"
                 id="gender"
                 name="gender"
@@ -80,7 +80,7 @@
             <div class="mb-3 text-font">
               <label for="emailAdd" class="form-label">Email: *</label>
               <input
-                v-model="emailAdd"
+                v-model="model.user.emailAdd"
                 type="text"
                 id="emailAdd"
                 name="emailAdd"
@@ -93,7 +93,7 @@
             <div class="mb-3 text-font">
               <label for="userPass" class="form-label">Password: *</label>
               <input
-                v-model="userPass"
+                v-model="model.user.userPass"
                 type="text"
                 id="userPass"
                 name="userPass"
@@ -108,7 +108,7 @@
                 >Profile Picture:</label
               >
               <input
-                v-model="userProfile"
+                v-model="model.user.userProfile"
                 type="text"
                 id="userProfile"
                 name="userProfile"
@@ -141,50 +141,42 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   data() {
     return {
-      firstName: "",
-      lastName: "",
-      userAge: "",
-      gender: "",
-      emailAdd: "",
-      userPass: "",
-      userProfile: "",
+      addingUserID: null,
+      model: {
+        user: {
+          firstName: "",
+          lastName: "",
+          userAge: "",
+          gender: "",
+          userRole: "",
+          emailAdd: "",
+          userPass: "",
+          userProfile: "",
+        },
+      },
     };
   },
   methods: {
-    async addUser() {
-      try {
-        await axios.post("https://puzzles-deli.onrender.com/register", {
-          firstName: this.firstName,
-          lastName: this.lastName,
-          userAge: this.userAge,
-          gender: this.gender,
-          emailAdd: this.emailAdd,
-          userPass: this.userPass,
-          userProfile: this.userProfile,
-        });
-        this.firstName = "";
-        this.lastName = "";
-        this.userAge = "";
-        this.gender = "";
-        this.emailAdd = "";
-        this.userPass = "";
-        this.userProfile = "";
-        this.$router.push("/admin");
-      } catch (err) {
-        alert(err);
-      }
+    addUser() {
+      this.$store.dispatch("register", this.model.user);
+      console.log(this.model.user);
+      setTimeout(() => {
+        location.reload();
+      }, 50000);
     },
   },
 };
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Lalezar&family=Londrina+Solid&display=swap");
-.yellow-bg {
+.button{
+  float: right;
+}
+
+.yellow-bg{
   background: #45a245;
 }
 
@@ -205,4 +197,12 @@ export default {
   border: 3px dashed #ee4823;
   background: #faf9e8;
 }
+
+.add-btn:hover,
+.clr-btn:hover {
+  border: 3px solid #faf9e8;
+  background: #ee4823;
+  color: #faf9e8;
+}
+
 </style>

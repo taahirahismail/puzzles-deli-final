@@ -44,11 +44,6 @@
               >CONTACT</router-link
             >
           </li>
-          <!-- <li class="nav-item">
-            <router-link to="/cart" class="nav-link"
-              >CART</router-link
-            >
-          </li> -->
         </ul>
       </div>
     </div>

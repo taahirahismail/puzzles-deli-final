@@ -13,8 +13,14 @@ export default {
 </script>
 
 <style scoped>
+*{
+  background-color: #faf9e8;
+}
 .footer{
     margin: auto;
+    height: 70px;
+    display: flex;
+    justify-content: center;
 }
 
 span{

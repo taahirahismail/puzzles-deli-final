@@ -1,5 +1,7 @@
 <template>
+  <div class="load">
     <div class="loader"></div>
+  </div>
 </template>
 
 <script>
@@ -9,12 +11,20 @@ export default {
 </script>
 
 <style scoped>
+
+
+.load{
+  display: flex;
+  justify-content: center;
+}
+
 .loader {
   width: 150px;
   height: 40px;
   border-radius: 50%;
   position: relative;
   animation: bounce 5s infinite;
+  
 }
 
 .loader::before {

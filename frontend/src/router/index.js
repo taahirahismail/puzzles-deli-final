@@ -1,10 +1,13 @@
+
+
 import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '../views/HomeView.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('../views/HomeView.vue')
+    component: HomeView
   },
   {
     path: '/about',
@@ -14,36 +17,12 @@ const routes = [
   {
     path: '/products',
     name: 'products',
-    component: () => import('../views/ProductsView.vue')
-  },
-  {
-    path: '/product/:id',
-    name: 'product',
     component: () => import('../views/ProductView.vue')
   },
-  // check
   {
-    path: '/product', 
-    name: 'add product', 
-    component: () => import('../components/AddProduct.vue')
-  }, 
-  // check
-  {
-    path: '/product/:id', 
-    name: 'update product',
-    component: () => import('../components/UpdateProduct.vue')
-  },
-  // check
-  {
-    path: '/register',
-    name: 'add user', 
-    component: () => import('../components/AddUser.vue')
-  },
-  // check 
-  {
-    path: '/user/:id',
-    name: 'update user', 
-    component: ()=> import('../components/UpdateUser.vue')
+    path: '/contact',
+    name: 'contact',
+    component: () => import('../views/ContactView.vue')
   },
   {
     path: '/admin',
@@ -51,10 +30,11 @@ const routes = [
     component: () => import('../views/AdminView.vue')
   },
   {
-    path: '/contact',
-    name: 'contact',
-    component: () => import('../views/ContactView.vue')
+    path: '/product/:prodID',
+    name: 'ProductView',
+    component: () => import('../views/SingleProductView.vue')
   }
+  
 ]
 
 const router = createRouter({

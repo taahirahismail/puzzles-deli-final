@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="text-center">
+    <div class="button">
       <a
         data-bs-toggle="modal"
         data-bs-target="#add-product-modal"
         href="#add-product-modal"
-        class="m-2 btn btn-outline-primary text-center"
+        class="m-2 btn btn-outline-danger text-center"
         id="add-book-btn"
         >Add Product</a
       >
@@ -32,7 +32,7 @@
               <div class="mb-3 text-font">
                 <label for="prodID" class="form-label">Product ID: *</label>
                 <input
-                  v-model="prodID"
+                  v-model="model.product.prodID"
                   type="text"
                   id="prodID"
                   name="prodID"
@@ -45,7 +45,7 @@
               <div class="mb-3 text-font">
                 <label for="prodName" class="form-label">Product Name: *</label>
                 <input
-                  v-model="prodName"
+                  v-model="model.product.prodName"
                   type="text"
                   id="prodName"
                   name="prodName"
@@ -58,7 +58,7 @@
               <div class="mb-3 text-font">
                 <label for="quantity" class="form-label">Quantity: *</label>
                 <input
-                  v-model="quantity"
+                  v-model="model.product.quantity"
                   type="number"
                   id="quantity"
                   name="quantity"
@@ -70,7 +70,7 @@
               <div class="mb-3 text-font">
                 <label for="amount" class="form-label">Price: *</label>
                 <input
-                  v-model="amount"
+                  v-model="model.product.amount"
                   type="number"
                   id="amount"
                   name="amount"
@@ -82,7 +82,7 @@
               <div class="mb-3 text-font">
                 <label for="category" class="form-label">Category: *</label>
                 <input
-                  v-model="category"
+                  v-model="model.product.category"
                   type="text"
                   id="category"
                   name="category"
@@ -91,11 +91,23 @@
                   required
                 />
               </div>
+              <div class="mb-3 text-font">
+                <label for="description" class="form-label">Description: *</label>
+                <input
+                  v-model="model.product.prodDesc"
+                  type="text"
+                  id="description"
+                  name="description"
+                  class="form-control input-bg"
+                  placeholder="eg: This sandwich is made with love :)"
+                  required
+                />
+              </div>
 
               <div class="mb-3 text-font">
                 <label for="prodUrl" class="form-label">Product Image: *</label>
                 <input
-                  v-model="prodUrl"
+                  v-model="model.product.prodUrl"
                   type="text"
                   id="prodUrl"
                   name="prodUrl"
@@ -127,47 +139,41 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   data() {
     return {
-      prodID: "",
-      prodName: "",
-      quantity: "",
-      amount: "",
-      category: "",
-      prodUrl: "",
+      model: {
+        product: {
+            prodID: "",
+            prodName: "",
+            quantity: "",
+            amount: "",
+            category: "",
+            prodDesc: "",
+            prodUrl: "",
+        },
+      },
     };
   },
-
   methods: {
-    async addProduct() {
-      try {
-        await axios.post("https://puzzles-deli.onrender.com/product", {
-          prodID: this.prodID,
-          prodName: this.prodName,
-          quantity: this.quantity,
-          amount: this.amount,
-          category: this.category,
-          prodUrl: this.prodUrl,
-        });
-        this.prodID = "";
-        this.prodName = "";
-        this.quantity = "";
-        this.amount = "";
-        this.category = "";
-        this.prodUrl = "";
-        this.$router.push("/admin");
-      } catch (err) {
-        alert(err);
-      }
+    addProduct() {
+      this.$store.dispatch("addProduct", this.model.product);
+      this.$router.push("/admin");
+      setTimeout(() => {
+        console.log("Reload");
+        location.reload()
+      }, 50000);
     },
   },
 };
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Lalezar&family=Londrina+Solid&display=swap");
+
+.button{
+  float: right;
+}
+
 .yellow-bg {
   background: #f7bf3e;
 }
@@ -189,4 +195,12 @@ export default {
   border: 3px dashed #ee4823;
   background: #faf9e8;
 }
+
+.add-btn:hover,
+.clr-btn:hover {
+  border: 3px solid #faf9e8;
+  background: #ee4823;
+  color: #faf9e8;
+}
+
 </style>
