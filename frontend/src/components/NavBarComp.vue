@@ -80,4 +80,11 @@ export default {
     color: black;
 }
 
+@media screen and (max-width: 348px){
+  .logo{
+    width: 80px;
+    height: 50px;
+  }
+}
+
 </style>
