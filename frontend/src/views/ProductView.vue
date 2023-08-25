@@ -58,6 +58,14 @@ export default {
     products() {
       return this.$store.state.products;
     },
+
+    search(){
+      let filterCategory = this.products.filter(product => product.category == this.category || this.category == '')
+      if(this.search.trim().length > 0){
+        return filterCategory.filter((input) => input.prodName.toLowerCase().includes(this.search.trim().toLowerCase()))
+      }
+      return filterCategory
+    }
   },
   mounted() {
     this.$store.dispatch("fetchProducts");
