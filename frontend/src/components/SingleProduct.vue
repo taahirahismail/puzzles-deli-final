@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="single-view">
     <div v-if="product" class="card">
       <div>
@@ -29,6 +30,37 @@ export default {
     },
   },
 };
+=======
+    <div v-if="product">
+        <img :src="product.prodUrl" :alt="product.prodName">
+        <h2>{{product.prodName}}</h2>
+        <p>{{product.amount}}</p>
+    </div>
+    <div v-else>
+        <spinner/>
+    </div>
+        
+
+</template>
+
+<script>
+
+import spinner from '@/components/SpinnerComponent.vue'
+
+export default {
+    props: ["product"], 
+
+    components:{
+        spinner
+    },
+
+    computed:{
+        product(){
+            return this.$store.state.selectedProduct; 
+        },
+    },
+}
+>>>>>>> 1d31f117115c387884c7459da52dc913177c4e9f
 </script>
 
 <style scoped>
